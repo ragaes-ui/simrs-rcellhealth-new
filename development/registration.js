@@ -55,12 +55,19 @@ _.assign(comp, {
           makeIconLabel('user-plus', 'Pasien baru')
         )
       ]);
-    } else {
-      // Menampilkan pesan untuk pengguna yang tidak diizinkan mengakses
-      return m('p', 'Hanya user pendaftaran dan admin yang dapat mengakses halaman ini');
+  } else {
+      // --- TAMPILAN WARNING KEREN (JIKA AKSES DITOLAK) ---
+      return m('.notification.is-danger.m-6', [
+        m('h1.title.has-text-white', 'Akses Ditolak!'),
+        m('p', 'Maaf, halaman ini khusus untuk Petugas Pendaftaran & Admin.'),
+        m('p.is-size-7', 'Silahkan hubungi administrator jika Anda merasa terjadi kesalahan.'),
+        m('button.button.is-light.mt-4', {
+          onclick: () => state.route = 'dashboard'
+        }, 'Kembali ke Dashboard')
+      ]);
+      // ---------------------------------------------------
     }
   },
-
   // Fungsi lainnya tetap sama, seperti `newPatient`, `updatePatient`, `poliVisit`, dll.
   newPatient: () => m('.content',
     m('h3', 'Pendaftaran Pasien Baru'),

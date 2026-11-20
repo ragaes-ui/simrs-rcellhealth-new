@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pembuatan Rujukan</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #fff5f0; /* Background agak kemerahan lembut */
+            padding: 20px;
+            color: #333;
+        }
+
+        /* Card Style */
+        .card-rujukan {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(255, 100, 50, 0.1);
+            background: #fff;
+            overflow: hidden;
+        }
+
+        /* Header Gradient (Oranye ke Merah) */
+        .header-rujukan {
+            background: linear-gradient(135deg, #f09819 0%, #edde5d 100%); /* Gradasi Sunset */
+            background: linear-gradient(135deg, #ff9966 0%, #ff5e62 100%); /* Opsi 2: Oranye Kemerahan */
+            padding: 25px;
+            color: white;
+            position: relative;
+        }
+        
+        .header-bg-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 4.5rem;
+            opacity: 0.15;
+            color: white;
+        }
+
+        /* Form Styling */
+        .form-floating > .form-control, 
+        .form-floating > .form-select {
+            border-radius: 8px;
+            border: 1px solid #f0dcd0;
+            height: 55px;
+        }
+
+        .form-floating > .form-control:focus,
+        .form-floating > .form-select:focus {
+            border-color: #ff9966;
+            box-shadow: 0 0 0 4px rgba(255, 153, 102, 0.15);
+        }
+
+        /* Judul Bagian */
+        .section-badge {
+            background-color: #fff0e6;
+            color: #d35400;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            display: inline-block;
+            margin-bottom: 15px;
+            border: 1px solid #ffccb3;
+        }
+
+        /* Radio Button Group Custom */
+        .btn-check:checked + .btn-outline-danger {
+            background-color: #ff5e62;
+            border-color: #ff5e62;
+            color: white;
+        }
+
+        /* Tombol Utama */
+        .btn-simpan {
+            background: linear-gradient(to right, #ff512f, #dd2476);
+            border: none;
+            border-radius: 10px;
+            padding: 12px 40px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(221, 36, 118, 0.3);
+            transition: all 0.3s;
+        }
+
+        .btn-simpan:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(221, 36, 118, 0.4);
+        }
+
+        /* Input Group Text (Icon di input) */
+        .input-group-text {
+            background-color: #fff0e6;
+            border-color: #f0dcd0;
+            color: #d35400;
+        }
+
+        /* Styling Tombol Kembali */
+        .btn-back {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 50px;
+            padding: 8px 15px;
+            font-size: 0.85rem;
+            text-decoration: none;
+            transition: all 0.3s;
+            z-index: 10;
+        }
+        .btn-back:hover {
+            background: white;
+            color: #d35400; /* Warna teks oranye saat hover */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                
+                <form id="formRujukan">
+                    <div class="card card-rujukan mb-4">
+                        
+                        <div class="header-rujukan">
+                            <a href="#" class="btn-back">
+                                <i class="fa fa-arrow-left me-2"></i> Kembali
+                            </a>
+
+                            <div class="d-flex align-items-center justify-content-center">
+                                <div class="bg-white bg-opacity-25 rounded-circle p-3 me-3">
+                                    <i class="fa fa-ambulance fa-2x text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="mb-0 fw-bold">Pembuatan Rujukan</h4>
+                                    <small class="text-white-50">Rujukan Antar RS / Faskes (V-Claim)</small>
+                                </div>
+                            </div>
+                            <i class="fa fa-share-square header-bg-icon"></i>
+                        </div>
+
+                        <div class="card-body p-4">
+                            
+                            <div class="mb-3">
+                                <span class="section-badge"><i class="fa fa-file-alt me-2"></i>DASAR RUJUKAN</span>
+                            </div>
+                            
+                            <div class="row g-3 mb-4">
+                                <div class="col-md-5">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="noSep" placeholder="Nomor SEP">
+                                        <label for="noSep">Nomor SEP Asal</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-floating">
+                                        <input type="date" class="form-control" id="tglRujukan">
+                                        <label for="tglRujukan">Tgl. Rujukan</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label text-muted small fw-bold d-block mb-1">Tipe Rujukan</label>
+                                    <div class="btn-group w-100" role="group">
+                                        <input type="radio" class="btn-check" name="tipeRujukan" id="tipePenuh" autocomplete="off" checked>
+                                        <label class="btn btn-outline-danger" for="tipePenuh">Penuh</label>
+                                      
+                                        <input type="radio" class="btn-check" name="tipeRujukan" id="tipeParsial" autocomplete="off">
+                                        <label class="btn btn-outline-danger" for="tipeParsial">Parsial</label>
+                                        
+                                        <input type="radio" class="btn-check" name="tipeRujukan" id="tipeBalik" autocomplete="off">
+                                        <label class="btn btn-outline-danger" for="tipeBalik">Rujuk Balik</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3 pt-2 border-top">
+                                <span class="section-badge mt-3"><i class="fa fa-hospital me-2"></i>TUJUAN FASKES</span>
+                            </div>
+
+                            <div class="row g-3 mb-4">
+                                <div class="col-md-7">
+                                    <div class="input-group" style="height: 55px;">
+                                        <div class="form-floating flex-grow-1">
+                                            <input type="text" class="form-control rounded-0 rounded-start" id="faskesTujuan" placeholder="Cari Faskes...">
+                                            <label for="faskesTujuan">Cari Faskes / RS Tujuan (Ketik Nama)</label>
+                                        </div>
+                                        <button class="btn btn-outline-secondary bg-light text-secondary border-start-0 px-3" type="button">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="form-floating">
+                                        <select class="form-select" id="poliTujuan">
+                                            <option selected disabled>-- Pilih Poli --</option>
+                                            <option value="INT">Poli Penyakit Dalam</option>
+                                            <option value="BED">Poli Bedah</option>
+                                            <option value="JAN">Poli Jantung</option>
+                                        </select>
+                                        <label for="poliTujuan">Poli Tujuan</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row g-3 mb-4">
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="diagnosa" placeholder="Diagnosa">
+                                        <label for="diagnosa">Diagnosa Rujukan (ICD-10)</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <select class="form-select" id="jnsPelayanan">
+                                            <option value="2" selected>Rawat Jalan</option>
+                                            <option value="1">Rawat Inap</option>
+                                        </select>
+                                        <label for="jnsPelayanan">Jenis Pelayanan</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row g-3">
+                                <div class="col-md-12">
+                                    <div class="form-floating">
+                                        <textarea class="form-control" placeholder="Catatan" id="catatan" style="height: 80px"></textarea>
+                                        <label for="catatan">Catatan / Alasan Rujukan</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        
+                        <div class="card-footer bg-white border-top-0 p-4 pt-0 d-flex justify-content-end align-items-center">
+                            <button type="button" class="btn btn-light text-danger me-3 fw-bold border">Batal</button>
+                            <button type="button" class="btn btn-simpan text-white" id="btnProsesRujukan">
+                                <i class="fa fa-paper-plane me-2"></i> Proses Rujukan
+                            </button>
+                        </div>
+
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <script>
+        // Set tanggal hari ini
+        document.getElementById('tglRujukan').valueAsDate = new Date();
+
+        // --- FUNGSI TOMBOL KEMBALI (KE MENU KOTAK) ---
+        function kembaliKeMenu() {
+            try {
+                // Kembali ke menu Integrasi System di App.js
+                window.parent.state.route = 'integrasiSystem';
+                window.parent.m.redraw();
+            } catch (e) {
+                // Fallback jika gagal akses parent
+                window.parent.location.reload();
+            }
+        }
+        
+        // Pasang event ke tombol kembali
+        document.querySelector('.btn-back').onclick = (e) => {
+            e.preventDefault();
+            kembaliKeMenu();
+        };
+
+        // --- LOGIKA NOTIFIKASI TOMBOL SIMPAN ---
+        document.getElementById('btnProsesRujukan').addEventListener('click', function() {
+            // 1. Ambil Nilai Nomor SEP
+            var noSep = document.getElementById('noSep').value;
+
+            // 2. Validasi jika kosong
+            if (noSep.trim() === "") {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Data Belum Lengkap',
+                    text: 'Mohon isi Nomor SEP Asal terlebih dahulu untuk membuat rujukan!',
+                    confirmButtonColor: '#f0ad4e',
+                    confirmButtonText: 'OK'
+                });
+            } else {
+                // 3. Jika terisi, simulasi error server BPJS
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Koneksi Gagal',
+                    text: 'Gagal terhubung ke server BPJS (V-Claim Web Service Timeout).',
+                    confirmButtonColor: '#d33',
+                    confirmButtonText: 'Tutup',
+                    footer: '<a href="#">Cek Status Bridging?</a>'
+                });
+            }
+        });
+    </script>
+</body>
+</html>

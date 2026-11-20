@@ -2,7 +2,16 @@
 
 _.assign(comp, {
   gizi: () => state.login.bidang !== 10
-  ? m('p', 'Hanya akun "user bidang gizi" yang dapat mengakses laman ini')
+// --- BAGIAN PERUBAHAN MULAI DARI SINI ---
+  ? m('.notification.is-danger.m-6', [
+      m('h1.title.has-text-white', 'Akses Ditolak!'),
+      m('p', 'Maaf, laman ini khusus untuk Petugas Bidang Gizi (ID: 10).'),
+      m('p.is-size-7', 'Silahkan hubungi administrator jika Anda merasa terjadi kesalahan.'),
+      m('button.button.is-light.mt-4', {
+        onclick: () => state.route = 'dashboard'
+      }, 'Kembali ke Dashboard')
+    ])
+  // --- BAGIAN PERUBAHAN BERAKHIR DI SINI ---
   : m('.content',
     m('h1', 'Daftar konsumsi pasien inap'),
     m('.box', m('.table-container', m('table.table.is-striped',

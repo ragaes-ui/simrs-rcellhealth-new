@@ -43,18 +43,37 @@ mongoDB.MongoClient.connect(
         });
       });
 
+// +++++++++++++ AWAL PERUBAHAN +++++++++++++
       socket.on('login', (creds, cb) => {
         db.collection('users').findOne(
           { username: creds.username, keaktifan: 1 },
-          (err, res) => {
-            if (res) {
-              bcrypt.compare(creds.password, res.password, (err, result) => {
-                cb({ res: result && res });
+          (err, user) => { // Mengganti 'res' menjadi 'user' agar lebih jelas
+            if (err) {
+              // Jika ada error dari database, kirim balasan gagal
+              console.error('Database error on login:', err);
+              return cb({ res: false });
+            }
+
+            if (user) {
+              // **Kasus 1: Username ditemukan**, lanjutkan cek password
+              bcrypt.compare(creds.password, user.password, (err, result) => {
+                if (result) {
+                  // Password cocok, kirim data user
+                  cb({ res: user });
+                } else {
+                  // Password salah, kirim balasan gagal
+                  cb({ res: false });
+                }
               });
+            } else {
+              // **Kasus 2: Username TIDAK ditemukan**
+              // Kirim balasan gagal agar notifikasi muncul di klien
+              cb({ res: false });
             }
           }
         );
       });
+      // +++++++++++++ AKHIR PERUBAHAN +++++++++++++
 
       socket.on('dbCall', (obj, cb) => {
         const coll = db.collection(obj.collection);

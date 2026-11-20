@@ -2,7 +2,16 @@
 
 _.assign(comp, {
   emergency: () => !_.includes([2, 3], state.login.peranan) ?
-  m('p', 'Hanya akun "tenaga medis" yang dapat mengakses laman ini') : m('.content',
+ m('.notification.is-danger.m-6', [
+        m('h1.title.has-text-white', 'Akses Ditolak!'),
+        m('p', 'Maaf, laman IGD ini khusus untuk Tenaga Medis (Dokter & Perawat).'),
+        m('p.is-size-7', 'Silahkan hubungi administrator jika Anda merasa terjadi kesalahan.'),
+        m('button.button.is-light.mt-4', {
+          onclick: () => state.route = 'dashboard'
+        }, 'Kembali ke Dashboard')
+      ])
+    // -----------------------------------------
+  : m('.content',
     {onupdate: () => [
       state.loading = true,
       db.patients.toArray(array => [

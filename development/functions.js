@@ -104,13 +104,69 @@ menus = {
       database: {full: 'Database', icon: 'database'}
     }
   },
-    integrasiSystem: { // Menu Integrasi System
-    full: 'Integrasi System', icon: 'cogs',
-    children: { // Menambahkan submenu dalam "Integrasi System"
-      cekPeserta: {full: 'Cek Peserta', icon: 'user-check'},
-      sep: {full: 'SEP', icon: 'file-medical'}
+integrasiSystem: {
+    full: 'Integrasi System',
+    icon: 'cogs',
+    children: {
+        cekPeserta: {
+            full: 'Cek Peserta',
+            icon: 'user-check',
+            url: 'cek_peserta.html'
+        },
+        sep: {
+            full: 'SEP',
+            icon: 'file-medical',
+            url: 'sep.html'
+        },
+        rujukan: {
+             full: 'Rujukan',
+             icon: 'file-export',
+             url: 'rujukan.html'
+        },
+        rencanakontrol: {
+             full: 'Rencana Kontrol',
+             icon: 'calendar-check',
+             url: 'rencana_kontrol.html'
+        },
+        antreanpasienbpjs: {
+             full: 'Antrean Pasien BPJS',
+             icon: 'list-ol',
+             url: 'antrean.html'
+        },
+        ketersediaankamar: {
+            full: 'Ketersediaan Kamar',
+            icon: 'bed',
+            url: 'ketersediaan_kamar.html'
+        }
+    } // 1. Tutup Children
+  }, // 2. Tutup Integrasi System (JANGAN ADA KURUNG LAGI SETELAH INI)
+
+Berkaspasien: { 
+    full: 'Berkas Pasien', icon: 'folder-open',
+    children: { 
+      koding: {
+          full: 'Koding', 
+          icon: 'user-check',
+          url: 'koding.html' // <--- Tambahkan URL file HTML-nya
+      },
+      rekammedis: {
+          full: 'Rekam Medis', 
+          icon: 'file-medical',
+          url: 'rekammedis.html' // <--- Tambahkan URL file HTML-nya
+      },
+      daftarpasienpulang: {
+          full: 'Daftar Pasien Pulang', 
+          icon: 'sign-out-alt',
+          url: 'pasien_pulang.html' // <--- Tambahkan URL file HTML-nya
+      }
     }
-  },
+},
+eis: {
+    full: 'Dashboard EIS',
+    icon: 'chart-line', // Gunakan icon grafik
+    url: 'eis.js'
+    // Tidak perlu children, karena ini satu halaman utuh
+},
   gizi: {full: 'Gizi', icon: 'utensils'},
   telemed: {full: 'Telemedic', icon: 'headset'}
 },
